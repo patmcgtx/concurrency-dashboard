@@ -39,6 +39,7 @@ struct OrderedStringEmitter: DashboardEmitter {
     
 }
 
+#if canImport(Playgrounds)
 import Playgrounds
 
 #Playground {
@@ -53,3 +54,4 @@ import Playgrounds
     }
 
 }
+#endif

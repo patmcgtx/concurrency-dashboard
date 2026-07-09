@@ -1,5 +1,5 @@
 //
-//  SingleIntSource.swift
+//  SingleIntEmitter.swift
 //  ConcurrencyDashboard
 //
 //  Created by Patrick McGonigle on 7/8/26.
@@ -27,6 +27,7 @@ struct SingleIntEmitter: DashboardEmitter {
     }
 }
 
+#if canImport(Playgrounds)
 import Playgrounds
 
 #Playground {
@@ -40,3 +41,4 @@ import Playgrounds
     }
 
 }
+#endif

@@ -31,8 +31,7 @@ struct TimeEmitter: DashboardEmitter {
     
 }
 
-import Playgrounds
-
+#if canImport(Playgrounds)
 import Playgrounds
 
 #Playground {
@@ -46,3 +45,4 @@ import Playgrounds
     }
 
 }
+#endif
