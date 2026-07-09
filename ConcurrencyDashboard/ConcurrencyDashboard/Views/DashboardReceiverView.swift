@@ -13,7 +13,7 @@ struct DashboardReceiverView: View {
     @State private var displayValue = "<init>"
     
     var body: some View {
-        Text("-> \(displayValue) <-")
+        Text(displayValue)
             .onReceive(source.publisher) { updated in
                 displayValue = updated
             }
@@ -22,4 +22,5 @@ struct DashboardReceiverView: View {
 
 #Preview {
     DashboardReceiverView(source: SingleIntEmitter(value: 2322))
+    DashboardReceiverView(source: OrderedStringEmitter(values: ["one", "two", "three"]))
 }

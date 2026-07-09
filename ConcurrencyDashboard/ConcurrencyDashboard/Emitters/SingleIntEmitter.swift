@@ -21,3 +21,17 @@ struct SingleIntEmitter: DashboardEmitter {
             .eraseToAnyPublisher()
     }
 }
+
+import Playgrounds
+
+#Playground {
+    
+    Task {
+        let publisher = SingleIntEmitter(value: 42).publisher
+
+        for try await value in publisher.values {
+            print("-> \(value)")
+        }
+    }
+
+}

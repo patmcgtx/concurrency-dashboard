@@ -14,9 +14,11 @@ struct GridView: View {
     ]
     
     let emitters: [any DashboardEmitter] = [
+        TimeEmitter(),
         SingleIntEmitter(value: 32),
         SingleIntEmitter(value: 33),
-        SingleIntEmitter(value: 34),
+        OrderedStringEmitter(values: ["uno", "dos", "tres"]),
+        SingleIntEmitter(value: 34)
     ]
     
     var body: some View {
