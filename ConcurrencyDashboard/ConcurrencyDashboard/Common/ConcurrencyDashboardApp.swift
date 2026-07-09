@@ -25,7 +25,7 @@ struct ConcurrencyDashboardApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            GridView()
         }
         .modelContainer(sharedModelContainer)
     }
