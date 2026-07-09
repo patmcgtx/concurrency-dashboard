@@ -9,40 +9,45 @@ import Combine
 
 struct DashboardItemView: View {
     
-    let source: DashboardEmitter
+    let emitter: DashboardEmitter
     
     @State private var displayValue = "--"
     
     var body: some View {
         VStack {
-            Text(source.name)
+            Text(emitter.name)
                 .font(.headline)
-            Text(displayValue)
-                .task {
-                    for await value in source.publisher.values {
-                        withAnimation {
-                            displayValue = value
+            HStack {
+                Text(displayValue)
+                    .task {
+                        for await value in emitter.publisher.values {
+                            withAnimation {
+                                displayValue = value
+                            }
                         }
                     }
-                }
-                .fontDesign(.monospaced)
-                .fontWeight(.bold)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(.primary, lineWidth: 1)
-                )
+                    .fontDesign(.monospaced)
+                    .fontWeight(.bold)
+                    .padding()
+                // TODO patmcg add a reset button
+                Button("", systemImage: "arrow.clockwise") {}
+            }
         }
     }
 }
 
 #Preview {
-    DashboardItemView(source: SingleIntEmitter(value: 2322))
     DashboardItemView(
-        source: OrderedStringEmitter(
-            values: ["one", "two", "three"],
+        emitter: SingleIntEmitter(
+            name: "Just 2322",
+            value: 2322
+        )
+    )
+    DashboardItemView(
+        emitter: OrderedStringEmitter(
+            name: "Nums", values: ["one", "two", "three"],
             interval: 1.25
         )
     )
-    DashboardItemView(source: TimeEmitter())
+    DashboardItemView(emitter: TimeEmitter(name: "Time of Day"))
 }

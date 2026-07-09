@@ -10,26 +10,43 @@ import SwiftUI
 struct DashboardView: View {
     
     private let columns = [
-        GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible(minimum: 120, maximum: .infinity)),
+        GridItem(.flexible(minimum: 120, maximum: .infinity))
     ]
     
     @State private var emitters: [any DashboardEmitter] = [
-        TimeEmitter(),
-        SingleIntEmitter(value: 32),
-        OrderedStringEmitter(values: ["one", "two", "three", "four", "five"], interval: 1.5),
-        SingleIntEmitter(value: 33),
-        OrderedStringEmitter(values: ["uno", "dos", "tres"], interval: 3.2),
-        SingleIntEmitter(value: 34)
+        TimeEmitter(name: "Clock"),
+        SingleIntEmitter(name: "Just 32", value: 32),
+        OrderedStringEmitter(name: "Nums", values: ["one", "two", "three", "four", "five"], interval: 1.5),
+        SingleIntEmitter(name: "Just 33", value: 33),
+        OrderedStringEmitter(name: "Numeros", values: ["uno", "dos", "tres"], interval: 3.2),
+        SingleIntEmitter(name: "Just 34", value: 34)
     ]
     
     var body: some View {
-        Text("Concurrency Dashboard")
-            .font(.title)
+        HStack {
+            Text("Concurrency Dashboard")
+                .font(.title)
+            Button(
+                action: {
+                    withAnimation {
+                        emitters.shuffle()
+                    }
+                },
+                label: {
+                    Image(systemName: "shuffle.circle")
+
+                })
+        }
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(emitters, id: \.id) { emitter in
-                    DashboardItemView(source: emitter)
+                    DashboardItemView(emitter: emitter)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(.primary, lineWidth: 1)
+                        )
                 }
             }
             .padding()

@@ -12,7 +12,7 @@ struct OrderedStringEmitter: DashboardEmitter {
     
     let id = UUID()
     
-    let name = "String array emitter"
+    let name: String
     
     let publisher: AnyPublisher<String, Never>
 
@@ -22,8 +22,12 @@ struct OrderedStringEmitter: DashboardEmitter {
     /// The time interval between emitting values
     let interval: TimeInterval
     
-    init(values: [String], interval: TimeInterval) {
-        
+    init(
+        name: String,
+        values: [String],
+        interval: TimeInterval
+    ) {
+        self.name = name
         self.values = values
         self.interval = interval
         
@@ -46,7 +50,11 @@ import Playgrounds
     
     Task {
         let strings = ["one", "two", "three"]
-        let publisher = OrderedStringEmitter(values: strings, interval: 1.5).publisher
+        let publisher = OrderedStringEmitter(
+            name: "Numberz",
+            values: strings,
+            interval: 1.5
+        ).publisher
 
         for await value in publisher.values {
             print("-> \(value)")

@@ -12,11 +12,13 @@ struct TimeEmitter: DashboardEmitter {
     
     let id = UUID()
     
-    let name = "Timer emitter"
+    let name: String
 
     var publisher: AnyPublisher<String, Never>
 
-    init() {
+    init(name: String) {
+        self.name = name
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm:ss"
         
@@ -37,7 +39,9 @@ import Playgrounds
 #Playground {
     
     Task {
-        let publisher = TimeEmitter().publisher
+        let publisher = TimeEmitter(
+            name: "Time"
+        ).publisher
 
         for await value in publisher.values {
             print("-> \(value)")
