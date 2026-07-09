@@ -24,6 +24,8 @@ struct DashboardView: View {
     ]
     
     var body: some View {
+        Text("Concurrency Dashboard")
+            .font(.title)
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(emitters, id: \.id) { emitter in
@@ -31,8 +33,6 @@ struct DashboardView: View {
                 }
             }
             .padding()
-            .fontDesign(.monospaced)
-            .fontWeight(.bold)
         }
     }
 }

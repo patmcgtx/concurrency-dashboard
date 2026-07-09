@@ -14,14 +14,25 @@ struct DashboardItemView: View {
     @State private var displayValue = "--"
     
     var body: some View {
-        Text(displayValue)
-            .task {
-                for await value in source.publisher.values {
-                    withAnimation {
-                        displayValue = value
+        VStack {
+            Text(source.name)
+                .font(.headline)
+            Text(displayValue)
+                .task {
+                    for await value in source.publisher.values {
+                        withAnimation {
+                            displayValue = value
+                        }
                     }
                 }
-            }
+                .fontDesign(.monospaced)
+                .fontWeight(.bold)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(.primary, lineWidth: 1)
+                )
+        }
     }
 }
 
