@@ -23,4 +23,5 @@ struct DashboardReceiverView: View {
 #Preview {
     DashboardReceiverView(source: SingleIntEmitter(value: 2322))
     DashboardReceiverView(source: OrderedStringEmitter(values: ["one", "two", "three"]))
+    DashboardReceiverView(source: TimeEmitter())
 }
