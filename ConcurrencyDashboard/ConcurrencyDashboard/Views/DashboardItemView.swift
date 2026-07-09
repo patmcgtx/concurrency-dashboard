@@ -1,12 +1,12 @@
 //
-//  DashboardReceiverView.swift
+//  DashboardItemView.swift
 //  ConcurrencyDashboard
 //
 //  Created by Patrick McGonigle on 7/8/26.
 //
 import SwiftUI
 
-struct DashboardReceiverView: View {
+struct DashboardItemView: View {
     
     let source: DashboardEmitter
     
@@ -21,7 +21,7 @@ struct DashboardReceiverView: View {
 }
 
 #Preview {
-    DashboardReceiverView(source: SingleIntEmitter(value: 2322))
-    DashboardReceiverView(source: OrderedStringEmitter(values: ["one", "two", "three"]))
-    DashboardReceiverView(source: TimeEmitter())
+    DashboardItemView(source: SingleIntEmitter(value: 2322))
+    DashboardItemView(source: OrderedStringEmitter(values: ["one", "two", "three"]))
+    DashboardItemView(source: TimeEmitter())
 }

@@ -1,12 +1,12 @@
 //
-//  MainView.swift
+//  DashboardView.swift
 //  ConcurrencyDashboard
 //
 //  Created by Patrick McGonigle on 7/8/26.
 //
 import SwiftUI
 
-struct GridView: View {
+struct DashboardView: View {
     
     let columns = [
         GridItem(.flexible()),
@@ -25,7 +25,7 @@ struct GridView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(emitters, id: \.id) { emitter in
-                    DashboardReceiverView(source: emitter)
+                    DashboardItemView(source: emitter)
                 }
             }
             .padding()
@@ -34,5 +34,5 @@ struct GridView: View {
 }
 
 #Preview {
-    GridView()
+    DashboardView()
 }
