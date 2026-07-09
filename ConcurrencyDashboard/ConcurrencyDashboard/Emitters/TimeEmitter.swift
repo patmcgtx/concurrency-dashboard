@@ -7,21 +7,24 @@
 import Foundation
 import Combine
 
+/// An emitter that streams the time (only) in 24-hour format with seconds.
 struct TimeEmitter: DashboardEmitter {
     
     let id = UUID()
     
     let name = "Timer emitter"
-    
-    var publisher: AnyPublisher<String, Never> {
-        Timer
+
+    var publisher: AnyPublisher<String, Never>
+
+    init() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm:ss"
+        
+        self.publisher = Timer
             .publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .map{
-                $0.formatted(
-                    date: Date.FormatStyle.DateStyle.omitted,
-                    time: Date.FormatStyle.TimeStyle.standard
-                )
+            .map {
+                formatter.string(from: $0)
             }
             .eraseToAnyPublisher()
     }

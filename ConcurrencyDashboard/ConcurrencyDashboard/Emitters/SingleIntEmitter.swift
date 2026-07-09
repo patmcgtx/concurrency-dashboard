@@ -7,16 +7,21 @@
 import Foundation
 import Combine
 
+/// Emits a single int value as a string
 struct SingleIntEmitter: DashboardEmitter {
     
     let id = UUID()
-    
-    let value: Int
-    
+        
     let name: String = "Single int source"
 
-    var publisher: AnyPublisher<String, Never> {
-        Just(value)
+    var publisher: AnyPublisher<String, Never>
+    
+    /// The int value to emit (as a string)
+    let value: Int
+
+    init(value: Int) {
+        self.value = value
+        self.publisher = Just(value)
             .map { String($0) }
             .eraseToAnyPublisher()
     }

@@ -13,11 +13,12 @@ struct DashboardView: View {
         GridItem(.flexible())
     ]
     
-    let emitters: [any DashboardEmitter] = [
+    @State private var emitters: [any DashboardEmitter] = [
         TimeEmitter(),
         SingleIntEmitter(value: 32),
+        OrderedStringEmitter(values: ["one", "two", "three", "four", "five"], interval: 1.5),
         SingleIntEmitter(value: 33),
-        OrderedStringEmitter(values: ["uno", "dos", "tres"]),
+        OrderedStringEmitter(values: ["uno", "dos", "tres"], interval: 3.2),
         SingleIntEmitter(value: 34)
     ]
     
@@ -29,6 +30,8 @@ struct DashboardView: View {
                 }
             }
             .padding()
+            .fontDesign(.monospaced)
+            .fontWeight(.bold)
         }
     }
 }
