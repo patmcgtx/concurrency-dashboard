@@ -39,7 +39,7 @@ import Playgrounds
     Task {
         let publisher = TimeEmitter().publisher
 
-        for try await value in publisher.values {
+        for await value in publisher.values {
             print("-> \(value)")
         }
     }

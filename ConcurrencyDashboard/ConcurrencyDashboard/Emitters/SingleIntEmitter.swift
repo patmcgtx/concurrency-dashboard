@@ -35,7 +35,7 @@ import Playgrounds
     Task {
         let publisher = SingleIntEmitter(value: 42).publisher
 
-        for try await value in publisher.values {
+        for await value in publisher.values {
             print("-> \(value)")
         }
     }

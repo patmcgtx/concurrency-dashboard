@@ -48,7 +48,7 @@ import Playgrounds
         let strings = ["one", "two", "three"]
         let publisher = OrderedStringEmitter(values: strings, interval: 1.5).publisher
 
-        for try await value in publisher.values {
+        for await value in publisher.values {
             print("-> \(value)")
         }
     }

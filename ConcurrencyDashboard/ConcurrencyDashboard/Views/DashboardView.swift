@@ -6,9 +6,10 @@
 //
 import SwiftUI
 
+/// A view that configures and displays a variety of data streams
 struct DashboardView: View {
     
-    let columns = [
+    private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
