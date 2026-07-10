@@ -30,7 +30,7 @@ struct DashboardItemView: View {
                     .fontWeight(.bold)
                     .padding()
                 // TODO patmcg add a reset button
-                Button("", systemImage: "arrow.clockwise") {}
+//                Button("", systemImage: "arrow.clockwise") {}
             }
         }
     }
