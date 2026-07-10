@@ -12,16 +12,31 @@ struct TimeEmitter: DashboardEmitter {
     
     let id = UUID()
     
-    let name = "Timer emitter"
+    let name: String
+    
+    /// See https://www.nsdateformatter.com
+    let timeFormat: String
 
     var publisher: AnyPublisher<String, Never>
 
-    init() {
+    init(
+        name: String,
+        timeFormat: String = "HH:mm:ss",
+        intervalSecs: TimeInterval = 1.0
+    ) {
+        
+        self.timeFormat = timeFormat
+        self.name = name
+        
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = timeFormat
         
         self.publisher = Timer
-            .publish(every: 1.0, on: .main, in: .common)
+            .publish(
+                every: intervalSecs,
+                on: .main,
+                in: .common
+            )
             .autoconnect()
             .map {
                 formatter.string(from: $0)
@@ -37,7 +52,11 @@ import Playgrounds
 #Playground {
     
     Task {
-        let publisher = TimeEmitter().publisher
+        let publisher = TimeEmitter(
+            name: "Time",
+            timeFormat: "SSS",
+            intervalSecs: 0.25
+        ).publisher
 
         for await value in publisher.values {
             print("-> \(value)")
@@ -45,4 +64,5 @@ import Playgrounds
     }
 
 }
+
 #endif

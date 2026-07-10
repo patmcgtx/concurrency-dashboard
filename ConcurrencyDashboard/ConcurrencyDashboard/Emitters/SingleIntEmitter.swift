@@ -12,14 +12,15 @@ struct SingleIntEmitter: DashboardEmitter {
     
     let id = UUID()
         
-    let name: String = "Single int source"
+    let name: String
 
     var publisher: AnyPublisher<String, Never>
     
     /// The int value to emit (as a string)
     let value: Int
 
-    init(value: Int) {
+    init(name: String, value: Int) {
+        self.name = name
         self.value = value
         self.publisher = Just(value)
             .map { String($0) }
@@ -33,7 +34,10 @@ import Playgrounds
 #Playground {
     
     Task {
-        let publisher = SingleIntEmitter(value: 42).publisher
+        let publisher = SingleIntEmitter(
+            name: "Just 42",
+            value: 42
+        ).publisher
 
         for await value in publisher.values {
             print("-> \(value)")

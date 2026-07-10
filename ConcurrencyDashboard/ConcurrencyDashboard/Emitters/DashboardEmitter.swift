@@ -13,7 +13,7 @@ protocol DashboardEmitter {
     /// Emitters have an id of concrete type UUID since protocols can't exactly implement Identifiable or Hashable
     var id: UUID { get }
     
-    /// The name of the emitter
+    /// A short, descriptive name for the emitter
     var name: String { get }
 
     /// The Combine publisher for this data source.
