@@ -25,7 +25,7 @@ struct DashboardView: View {
     
     var body: some View {
         HStack {
-            Text("Concurrency Dashboard")
+            Text("Dashboard")
                 .font(.title)
             Button(
                 action: {
