@@ -1,14 +1,14 @@
 //
-//  DashboardView.swift
+//  ClockView.swift
 //  ConcurrencyDashboard
 //
-//  Created by Patrick McGonigle on 7/8/26.
+//  Created by Patrick McGonigle on 7/9/26.
 //
 import SwiftUI
 
-/// A view that configures and displays a variety of data streams
-struct DashboardView: View {
-    
+/// A view that configures and displays a variety of time instruments
+struct ClockView: View {
+
     let title: String
     
     private let columns = [
@@ -17,12 +17,17 @@ struct DashboardView: View {
     ]
     
     @State private var emitters: [any DashboardEmitter] = [
-        TimeEmitter(name: "Time"),
-        SingleIntEmitter(name: "Just 32", value: 32),
-        OrderedStringEmitter(name: "Nums", values: ["one", "two", "three", "four", "five"], interval: 1.5),
-        SingleIntEmitter(name: "Just 33", value: 33),
-        OrderedStringEmitter(name: "Numeros", values: ["uno", "dos", "tres"], interval: 3.2),
-        SingleIntEmitter(name: "Just 34", value: 34)
+        TimeEmitter(name: "Year", timeFormat: "yyyy"),
+        TimeEmitter(name: "Quarter", timeFormat: "QQQ"),
+        TimeEmitter(name: "Month", timeFormat: "MMM"),
+        TimeEmitter(name: "Day", timeFormat: "dd"),
+        TimeEmitter(name: "DoW", timeFormat: "E"),
+        TimeEmitter(name: "Hour", timeFormat: "HH"),
+        TimeEmitter(name: "Minutes", timeFormat: "mm"),
+        TimeEmitter(name: "Seconds", timeFormat: "ss"),
+        TimeEmitter(name: "Ms", timeFormat: "SSS", intervalSecs: 0.1),
+        TimeEmitter(name: "Zone", timeFormat: "zzz"),
+        TimeEmitter(name: "GMT", timeFormat: "Z"),
     ]
     
     var body: some View {
@@ -56,6 +61,7 @@ struct DashboardView: View {
     }
 }
 
+
 #Preview {
-    DashboardView(title: "Preview")
+    ClockView(title: "Clock preview")
 }

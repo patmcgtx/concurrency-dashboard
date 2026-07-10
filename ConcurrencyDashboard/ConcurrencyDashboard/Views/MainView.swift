@@ -10,10 +10,10 @@ struct MainView: View {
     var body: some View {
         TabView {
             Tab("Dashboard", systemImage: "circle") {
-                DashboardView()
+                DashboardView(title: "Dashboard")
             }
             Tab("Clock", systemImage: "circle") {
-                Text("TODO")
+                ClockView(title: "Clock")
             }
             Tab("Music", systemImage: "circle") {
                 Text("TODO")
