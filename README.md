@@ -4,7 +4,7 @@ A lab for experimenting with Swift concurrency.
 
 The basic idea is to have a bunch of `Publisher`s and ways to view and stream them in an interactive SwiftUI app — and along the way, experiment with bridging modern Swift concurrency (`async`/`await` + `Task`s) with Combine and old-school GCD.
 
-⚠️ This is a rough lab and always in progress. Not production code!
+⚠️ This is a rough lab and always in progress.
 
 ## What's here
 
